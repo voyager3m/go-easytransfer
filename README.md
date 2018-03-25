@@ -3,7 +3,7 @@
 golang port for arduino easytransfer library https://github.com/madsci1016/Arduino-EasyTransfer
 
 
-example of use  
+example
 ```go
 import (
 	"fmt"
@@ -14,6 +14,10 @@ import (
 	"github.com/voyager3m/go-easytransfer"
 )
 
+/*
+structures should be the same as in arduino
+all fields should be public (start with capital letter)
+*/
 type RecTx struct {
 	Cmd      uint8
 	Options  uint16
