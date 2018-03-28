@@ -29,7 +29,7 @@ func SendData(val interface{}, stream io.Writer) {
 	header := []byte{0x06, 0x85}
 
 	var buf bytes.Buffer
-	binary.Write(&buf, binary.BigEndian, val)
+	binary.Write(&buf, binary.LittleEndian, val)
 	CS := byte(buf.Len())
 
 	var outbuf bytes.Buffer
@@ -108,7 +108,7 @@ func ReceiveData(val interface{}, stream io.Reader) bool {
 	var size = byte(0)
 	{
 		var buf bytes.Buffer
-		binary.Write(&buf, binary.BigEndian, val)
+		binary.Write(&buf, binary.LittleEndian, val)
 		size = byte(buf.Len())
 	}
 
@@ -137,7 +137,7 @@ func ReceiveData(val interface{}, stream io.Reader) bool {
 		return false
 	}
 
-	if err = binary.Read(&buf, binary.BigEndian, val); err != nil {
+	if err = binary.Read(&buf, binary.LittleEndian, val); err != nil {
 		log.Printf("Error write to interface: %v\n", err)
 		return false
 
